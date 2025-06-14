@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maruti Swift - Details & Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* Car Details Section */
+.car-details {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-details:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h3 {
+  color: #34495e;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 30px 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #667eea;
+  position: relative;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #764ba2;
+  border-radius: 2px;
+}
+
+/* Car Image Styling */
+img {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Features List */
+ul {
+  list-style: none;
+  background: rgba(102, 126, 234, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #667eea;
+  margin-bottom: 30px;
+}
+
+li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 25px;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+li:hover {
+  background: rgba(102, 126, 234, 0.1);
+  padding-left: 30px;
+  border-radius: 8px;
+}
+
+strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Button Styles */
+.call-now-btn, .whatsapp-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px 15px 10px 0;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-width: 200px;
+}
+
+.call-now-btn::before,
+.whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.call-now-btn:hover::before,
+.whatsapp-btn:hover::before {
+  left: 100%;
+}
+
+.call-now-btn {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+  border: 2px solid #c0392b;
+}
+
+.call-now-btn:hover {
+  background: linear-gradient(45deg, #c0392b, #a93226);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+}
+
+.whatsapp-btn {
+  background: linear-gradient(45deg, #25d366, #128c7e);
+  color: white;
+  border: 2px solid #128c7e;
+}
+
+.whatsapp-btn:hover {
+  background: linear-gradient(45deg, #128c7e, #075e54);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+/* Back Link */
+a[href="index.html"] {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border: 2px solid #667eea;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+a[href="index.html"]:hover {
+  background: #667eea;
+  color: white;
+  transform: translateX(-5px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .car-details {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  ul {
+    padding: 20px 15px;
+  }
+  
+  li {
+    font-size: 1rem;
+  }
+  
+  .call-now-btn, .whatsapp-btn {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    min-width: auto;
+  }
+  
+  img {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .call-now-btn, .whatsapp-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  
+  ul {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.car-details {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Additional Interactive Elements */
+.call-now-btn:active,
+.whatsapp-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Accessibility Improvements */
+.call-now-btn:focus,
+.whatsapp-btn:focus,
+a[href="index.html"]:focus {
+  outline: 3px solid rgba(102, 126, 234, 0.5);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .car-details {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .call-now-btn, .whatsapp-btn {
+    background: white;
+    color: black;
+    border: 1px solid black;
+  }
+}
+</style>
+
+<body>
+  <section class="car-details" style="max-width: 700px; margin: auto; padding: 20px;">
+    <h1>Maruti Swift</h1>
+    <img src="CARS PHOTOS/HYUNDAI CRETA.jpg" alt="Maruti Swift" style="height:100%; width: 100%; object-fit:fill; border-radius: 10px; margin-bottom: 20px;">
+
+    <ul style="font-size: 1.1rem; line-height: 1.8;">
+      <li><strong>Rent per Day:</strong> ₹1,800</li>
+      <li><strong>Extra Km Charges:</strong> ₹6/km</li>
+      <li><strong>Transmission:</strong> Manual</li>
+      <li><strong>Fuel:</strong> Petrol</li>
+      <li><strong>Features:</strong> AC, 5 Seater, GPS Navigation</li>
+    </ul>
+
+    <h3>Booking Options</h3>
+    <a href="tel:+919876543210" class="call-now-btn">📞 Call to Book</a><br>
+    <a href="https://wa.me/919876543210?text=Hi, I want to book Maruti Swift for rental" class="whatsapp-btn">💬 WhatsApp to Book</a>
+    
+    <br><br>
+    <a href="index.html">← Back to Car List</a>
+  </section>
+</body>
+</html>
